@@ -6,9 +6,9 @@ class PasswordVault:
         self.__failed_attempts = 0
 
     def unlock(self, password_attempt):
-        if password_attempt == self.__master_password:
+        if self.__validate_master_password(password_attempt):
             self.__is_locked = False
-            self.__failed_attempts = 0
+            self.__reset_attempts()
         else:
             self.__failed_attempts += 1
             print(f"ERROR: Incorrect password. You have {self.__failed_attempts}/3 attempts left.")
@@ -41,19 +41,5 @@ class PasswordVault:
         else:
             return False
         
-    
-
-
-
-
-finster = PasswordVault("power")
-
-finster.unlock("pow")
-finster.unlock("posw")
-finster.unlock("power")
-finster.store_password("floor")
-print(finster.get_password())
-print(finster.get_failed_attempts())
-print(finster._validate_master_password("powr"))
-
-# print(finster.lock())
+    def __reset_attempts(self):
+        self.__failed_attempts = 0
