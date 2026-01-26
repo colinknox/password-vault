@@ -25,11 +25,24 @@ class PasswordVault:
         else:
             self.__stored_password = password
 
+    def get_password(self):
+        if self.__is_locked == True:
+            print("ERROR: Your password vault is locked.")
+            return None
+        else:
+            return self.__stored_password
+
+    def get_failed_attempts(self):
+        return self.__failed_attempts
+
 
 finster = PasswordVault("power")
 
+finster.unlock("pow")
+finster.unlock("posw")
 finster.unlock("power")
-finster.store_password("fat")
-
+finster.store_password("floor")
+print(finster.get_password())
+print(finster.get_failed_attempts())
 
 # print(finster.lock())
