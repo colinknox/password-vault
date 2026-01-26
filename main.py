@@ -34,6 +34,16 @@ class PasswordVault:
 
     def get_failed_attempts(self):
         return self.__failed_attempts
+    
+    def __validate_master_password(self, password):
+        if password == self.__master_password:
+            return True
+        else:
+            return False
+        
+    
+
+
 
 
 finster = PasswordVault("power")
@@ -44,5 +54,6 @@ finster.unlock("power")
 finster.store_password("floor")
 print(finster.get_password())
 print(finster.get_failed_attempts())
+print(finster._validate_master_password("powr"))
 
 # print(finster.lock())
